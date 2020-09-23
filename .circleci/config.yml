@@ -33,5 +33,5 @@ workflows:
       - node_8
       - node_10_with_percy
       - percy/finalize_all:
-        requires:
-          - node_10_with_percy
+          requires:
+            - node_10_with_percy
