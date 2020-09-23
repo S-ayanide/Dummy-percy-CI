@@ -1,12 +1,10 @@
 version: 2.1
 
-orbs:
-  percy: percy/agent@0.1.2
-
 default_steps: &default_steps
   steps:
     - checkout
     - run: npm ci
+    - run: npm test
 
 jobs:
   node_8:
@@ -20,20 +18,10 @@ jobs:
     docker:
       - image: circleci/node:10-browsers
     <<: *default_steps
-  run_tests:
-    parallelism: 3
-    steps:
-      - attach_workspace:
-          at: .
-      - run: npm test
 
 workflows:
   version: 2
   test:
     jobs:
-      - node 8
+      - node_8
       - node_10_with_percy
-      - run_tests
-      - percy/finalize_all:
-          requires:
-              - run_tests
