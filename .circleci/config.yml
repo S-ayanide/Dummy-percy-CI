@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  percy: percy/agent@0.1.2
-
 default_steps: &default_steps
   steps:
     - checkout
@@ -32,6 +29,4 @@ workflows:
     jobs:
       - node_8
       - node_10_with_percy
-      - percy/finalize_all:
-          requires:
-            - node_10_with_percy
+      
